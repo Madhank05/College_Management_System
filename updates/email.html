@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Update Email</title>
+  <link rel="stylesheet" href="../css/updateform.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Update Email</h1>
+
+    <form method="POST" action="/update-email">
+      <label for="regno">Register Number</label>
+      <input name="regno" id="regno" type="number" required />
+
+      <label for="email">Email</label>
+      <input name="email" id="email" type="email" required />
+
+      <button type="submit">Update Email</button>
+    </form>
+
+    <a href="update.html" class="back-btn">Back</a>
+  </div>
+</body>
+</html>

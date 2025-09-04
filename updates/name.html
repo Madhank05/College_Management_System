@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Update Name</title>
+  <link rel="stylesheet" href="../css/updateform.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Update Name</h1>
+
+    <form method="POST" action="/update-name">
+      <label for="regno">Register Number</label>
+      <input name="regno" type="number" required />
+
+      <label for="name">Name</label>
+      <input name="name" id="name" type="text" required />
+
+      <button type="submit">Update Name</button>
+    </form>
+
+    <a href="update.html" class="back-btn">Back</a>
+  </div>
+</body>
+</html>

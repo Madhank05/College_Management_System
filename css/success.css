@@ -1,0 +1,41 @@
+/* Base styling */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to right, #d3cce3, #e9e4f0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Container styling */
+.container {
+  background-color: #ffffff;
+  padding: 40px 60px;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.container h1 {
+  color: #27ae60;
+  font-size: 1.8rem;
+  margin-bottom: 30px;
+}
+
+/* Back link as a button */
+.container a {
+  text-decoration: none;
+  padding: 10px 25px;
+  background-color: #3498db;
+  color: white;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.container a:hover {
+  background-color: #2980b9;
+}

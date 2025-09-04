@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Update Date of Birth</title>
+  <link rel="stylesheet" href="../css/updateform.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Update Date of Birth</h1>
+
+    <form method="POST" action="/update-dob">
+      <label for="regno">Register Number</label>
+      <input name="regno" type="number" id="regno" required />
+
+      <label for="dob">Date of Birth</label>
+      <input name="dob" type="date" id="date" required />
+
+      <button type="submit">Update DOB</button>
+    </form>
+
+    <a href="update.html" class="back-btn">Back</a>
+  </div>
+</body>
+</html>

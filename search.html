@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/search.css">
+
+</head>
+<body>
+    <a href="collegemanagement.html">back</a>
+    <br>
+    <center><h1>Enter Register Number or Department</h1></center>
+   <input type="text" id="regnoInput" placeholder="Enter Reg No">
+   <button onclick="fetchStudent()">Get Student</button>
+    <label for="dept">Department : </label>
+            <select name="dept" id="dept">
+                <option value=""></option>
+                <option value="IT">IT</option>
+                 <option value="CSE">CSE</option>
+                 <option value="ECE">ECE</option>
+                <option value="EEE">EEE</option> 
+                <option value="MECH">MECH</option>
+                <option value="CIVIL">CIVIL</option>
+            </select>
+<button onclick="fetchStudent()">Get Student</button>
+
+<table id="studentTable">
+  <thead>
+    <tr>
+      <th>Reg No</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Date of Birth</th>
+      <th>Department</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
+
+<script>
+  function fetchStudent() {
+    const regno = document.getElementById('regnoInput').value.trim();
+    const dept = document.getElementById('dept').value;
+    const tbody = document.querySelector('#studentTable tbody');
+    tbody.innerHTML = ''; // Clear table before inserting
+
+    // Handle invalid input case
+    if ((regno && dept) || (!regno && !dept)) {
+      alert('Please enter only one: Reg No or Department.');
+      return;
+    }
+
+    // Search by Reg No
+    if (regno) {
+      fetch(`/search/${regno}`)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Student not found');
+          }
+          return response.json();
+        })
+        .then(student => {
+          const row = `<tr>
+                        <td>${student.regno}</td>
+                        <td>${student.name}</td>
+                        <td>${student.email}</td>
+                        <td>${new Date(student.dob).toLocaleDateString()}</td>
+                        <td>${student.dept}</td>
+                      </tr>`;
+          tbody.innerHTML += row;
+        })
+        .catch(error => {
+          console.error('Error fetching student data:', error);
+          alert('Student not found or error occurred');
+        });
+    }
+
+    // Search by Department
+    else if (dept) {
+      fetch(`/search/dept/${dept}`)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Students not found');
+          }
+          return response.json();
+        })
+        .then(data => {
+          data.forEach(student => {
+            const row = `<tr>
+                          <td>${student.regno}</td>
+                          <td>${student.name}</td>
+                          <td>${student.email}</td>
+                          <td>${new Date(student.dob).toLocaleDateString()}</td>
+                          <td>${student.dept}</td>
+                        </tr>`;
+            tbody.innerHTML += row; // ✅ append instead of overwrite
+          });
+        })
+        .catch(error => {
+          console.error('Error fetching student data:', error);
+          alert('No students found or error occurred');
+        });
+    }
+  }
+</script>
+    
+</body>
+</html>
