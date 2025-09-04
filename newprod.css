@@ -1,0 +1,138 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #e3f0c1; /* soft moss green */
+    color: #3d3d29; /* dark olive gray */
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Container */
+.container {
+    width: 90%;
+    max-width: 600px;
+    background-color: #d2c6aecc; /* warm light brown/beige with opacity */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Title */
+.container h1 {
+    text-align: center;
+    color: #2e5e2e; /* forest green */
+    margin-bottom: 25px;
+    font-size: 1.8rem;
+}
+
+/* Form Layout */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-top: 15px;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+input,
+select {
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #a3a18c; /* soft grayish olive */
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+input:focus,
+select:focus {
+    outline: none;
+    border-color: #7ea35e; /* green highlight */
+    box-shadow: 0 0 4px rgba(126, 163, 94, 0.5);
+}
+
+/* Button Section */
+form div {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 25px;
+    gap: 10px;
+}
+
+button,
+.back-button a {
+    flex: 1 1 30%;
+    padding: 10px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+/* Submit Button */
+#sub {
+    background-color: #4caf50; /* soft green */
+    color: white;
+}
+
+#sub:hover {
+    background-color: #3d8b3d;
+}
+
+/* Reset Button */
+#res {
+    background-color: grey; /* soft gray */
+    color: white;
+}
+
+#res:hover {
+    background-color: #6c757d;
+    color: white;
+}
+
+/* Back Button */
+.back-button {
+    padding: 0;
+    border: none;
+    background: none;
+    flex: 1 1 30%;
+}
+
+.back-button a {
+    display: inline-block;
+    width: 100%;
+    background-color: #1b5597; /* warm earthy orange */
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.back-button a:hover {
+    background-color: #331bbb;
+}
+
+/* Responsive Layout */
+@media (max-width: 480px) {
+    form div {
+        flex-direction: column;
+    }
+
+    button,
+    .back-button a {
+        width: 100%;
+    }
+}

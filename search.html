@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Search Products</title>
+  <link rel="stylesheet" href="search.css">
+</head>
+<body>
+  <a href="basic.html">Back</a>
+  
+  <div class="content">
+    <h1>Search Product by Product ID or Category</h1>
+
+    <div class="search-form">
+      <label for="prodid">Product ID:</label>
+      <input type="number" name="prodid" id="prodid" placeholder="Enter Product ID" />
+
+      <label for="category">Category:</label>
+      <select name="category" id="category">
+        <option value="">-- Select Category --</option>
+        <option value="mobile">Mobiles</option>
+        <option value="laptop">Laptops</option>
+        <option value="furniture">Furnitures</option>
+        <option value="fridge">Fridge</option>
+        <option value="tv">Television</option>
+        <option value="stationary">Stationary</option>
+      </select>
+
+      <button onclick="fetchProduct()">Search</button>
+    </div>
+
+    <table id="productTable">
+      <thead>
+        <tr>
+          <th>Product ID</th>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Category</th>
+          <th>Stock</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <script>
+    function fetchProduct() {
+      const prodid = document.getElementById('prodid').value.trim();
+      const category = document.getElementById('category').value;
+      const tbody = document.querySelector('#productTable tbody');
+      tbody.innerHTML = '';
+
+      if ((prodid && category) || (!prodid && !category)) {
+        alert('Please enter only one: Product ID OR select Category.');
+        return;
+      }
+
+      if (prodid) {
+        fetch(`/search/product/${prodid}`)
+          .then(response => {
+            if (!response.ok) throw new Error('Product not found');
+            return response.json();
+          })
+          .then(product => {
+            const row = `<tr>
+                          <td>${product.prodid}</td>
+                          <td>${product.prodname}</td>
+                          <td>${product.price}</td>
+                          <td>${product.category}</td>
+                          <td>${product.stock}</td>
+                        </tr>`;
+            tbody.innerHTML = row;
+          })
+          .catch(error => {
+            console.error(error);
+            alert('Product not found or error occurred');
+          });
+      } else if (category) {
+        fetch(`/search/category/${category}`)
+          .then(response => {
+            if (!response.ok) throw new Error('Products not found');
+            return response.json();
+          })
+          .then(data => {
+            if (data.length === 0) {
+              alert('No products found in this category.');
+              return;
+            }
+
+            data.forEach(product => {
+              const row = `<tr>
+                            <td>${product.prodid}</td>
+                            <td>${product.prodname}</td>
+                            <td>${product.price}</td>
+                            <td>${product.category}</td>
+                            <td>${product.stock}</td>
+                          </tr>`;
+              tbody.innerHTML += row;
+            });
+          })
+          .catch(error => {
+            console.error(error);
+            alert('Error occurred while fetching category data');
+          });
+      }
+    }
+  </script>
+</body>
+</html>
